@@ -1,0 +1,25 @@
+une planete peut se faire attaquer par un seul vaisseau --> destructeur --> bombardier
+une planete des point d armure
+par default pas de bouclier donc ammure 0 mais possibilité d augmenter une armure (bouclier)
+possibilité de retablir vie de la planete avec des ressources.
+une planete a de la population --> stock
+
+poulation permet de recupere de la vie 
+planete de base un peu toutes les ressources:
+planete specialisé resource
+3 resources + energie :
+- enregie --> capacité de niveau de batiment
+- métal --> stock --> construction
+- cristal --> stock --> construction
+- gaz --> stock --> deplacement de vaisseaux
+
+4 types de planète:
+- equilibré 33/33/33
+- 3 non equilibrés 70/15/15
+
+une planete par default 0 attaque mais amelioration avec des construction
+
+commerce avec planete
+champ d asteroide natif ,pas de possibilité de creation a posteriorie
+
+
