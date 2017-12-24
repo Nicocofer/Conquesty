@@ -1,0 +1,156 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+$f: 'Open Sans', sans-serif;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+$ft: 'Roboto', sans-serif;
+
+/* Colors */
+
+$c1: white; /* couleur du texte*/
+$c2: #111; /* couleur du fond des cadres */
+
+
+/* WEBSITE */
+
+body {
+	font-family: $f;
+	margin: auto;
+	background-size: cover;
+	background-image: url(/dist/img/bg1.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	height: 2000px;
+}
+
+
+header{
+
+	background: $c2;
+	display: flex;
+	justify-content: space-between;
+	height: 80px;
+	opacity: 0.95;
+
+
+	
+	
+	.logo{
+		font-family: $ft;
+		color: $c1;
+		font-size:30px;
+		margin: auto;
+		margin-left: 5%;
+		font-weight: 700;
+
+	}
+
+
+	nav{
+		width: 50%;
+		margin-right: 5%;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		margin: auto;
+		padding-top: 10px;
+	}
+
+	
+
+	li {
+		margin: 20px;
+		width: 100px;
+		height: 40px;
+		list-style: none;
+
+	}
+
+	a {
+		text-decoration: none;
+		color: $c1;
+		font-weight: 700;
+	}
+
+	a:hover {
+		border-bottom: 2px solid $c1;
+	}
+}
+
+
+.wrapper{
+	
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin:auto;
+	margin-top: 2%;
+	color: $c1;
+
+
+	.left {
+		
+		width: 30%;
+
+
+	}
+	
+	h1{ /* Titre des cadres a gauche */
+		font-weight: 600;
+		font-size: 25px;
+		border: 1px solid #444;
+		border-bottom: none;
+		width: 200px;
+		text-align: center;
+		margin-bottom: 0;
+		color: $c1;
+	}
+
+	h2 {
+		font-size: 15px;
+		color: $c1;
+		margin-left: 5%;
+	}
+
+
+	.ressources {
+		border: 1px solid #444;
+		background: $c2;
+		width: 100%;
+		/*height: 100px;*/
+		opacity: 0.9;
+	}
+
+	.param {
+		border: 1px solid #444;
+		background: $c2;
+		width: 100%;
+		height: 500px;
+		opacity: 0.9;
+
+	}
+
+
+
+
+	.right {
+		
+		width: 60%;
+
+		border: 1px solid #444;
+		background: $c2;
+		width: 100%;
+		height: 500px;
+		opacity: 0.9;
+		margin: 50px;
+	}
+
+
+}
