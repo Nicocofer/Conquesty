@@ -4,10 +4,12 @@
 import cgi 
 import re
 import sqlite3
+
 form = cgi.FieldStorage()
 
 conn = sqlite3.connect('Base_conquesty.db3')
 cursor = conn.cursor()
+
 print("Content-type: text/html; charset=utf-8\n")
 
 cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,enregie FROM Planete""")
