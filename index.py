@@ -12,7 +12,7 @@ cursor = conn.cursor()
 
 print("Content-type: text/html; charset=utf-8\n")
 
-cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,enregie FROM Planete""")
+cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie FROM Planete""")
 for row in cursor:
     metal=str(row[0])
     metal_max=str(row[1])

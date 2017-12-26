@@ -34,20 +34,21 @@ class Planete:
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         print(self.nom)
-        params=(nb,self.nom,self.pop,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie)
-        cursor.execute("INSERT INTO planete VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
-        
+        params=(int(nb),self.nom,self.pop,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie)
+        cursor.execute("""INSERT INTO planete VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", params)
+        print("test")
+        conn.close()
         
     def attribution_systemes(self):
         num_systeme = random.randrange(100)
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         liste_nom_base=[]
-        nb_planete = cursor.execute("SELECT COUNT(*) FROM Planete WHERE systeme =" + str(num_systeme))
+        nb_planete = cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
         
-        while nb_planete == 10:
+        while nb_planete == 3:
             num_systeme = random.randrange(100)
-            nb_planete = cursor.execute("SELECT COUNT(*) FROM Planete WHERE systeme =" + str(num_systeme))
+            nb_planete = cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
         conn.close()
         return num_systeme
     
@@ -58,7 +59,7 @@ class Planete:
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         liste_nom_base=[]
-        cursor.execute("""SELECT name FROM Planete""")
+        cursor.execute("""SELECT name FROM planete""")
         for row in cursor:
             liste_nom_base.append(str(row[0]))
 
