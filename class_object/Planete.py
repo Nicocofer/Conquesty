@@ -44,7 +44,7 @@ class Planete:
     def coord_aleatoire(self):
 
         coord = random.randrange(500)
-        if random.randrange(1)==0:
+        if random.randrange(2)==1:
             return (coord*(-1))
         else:
             return coord
