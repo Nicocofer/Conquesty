@@ -28,26 +28,36 @@ class Planete:
         self.nom = self.nom_aleatoire()
         self.armure = 0
         self.attaque = 0
+        self.x=self.coord_aleatoire()
+        self.y=self.coord_aleatoire()
         
     def creation(self,nb):
         
         conn = sqlite3.connect('Base_conquesty.db3')
+        
         cursor = conn.cursor()
         print(self.nom)
-        params=(int(nb),self.nom,self.pop,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie)
-        cursor.execute("""INSERT INTO planete VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", params)
-        print("test")
+        params=(self.nom,self.pop,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie,self.x,self.y)
+        cursor.execute("""INSERT INTO planete(id,name,population,metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,type,armure,attaque,id_proprio,systeme,galaxie,x,y) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)""", params)
+        conn.commit()
         conn.close()
+    def coord_aleatoire(self):
+
+        coord = random.randrange(500)
+        if random.randrange(1)==0:
+            return (coord*(-1))
+        else:
+            return coord
         
     def attribution_systemes(self):
-        num_systeme = random.randrange(100)
+        num_systeme = random.randrange(3)
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         liste_nom_base=[]
         nb_planete = cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
         
         while nb_planete == 3:
-            num_systeme = random.randrange(100)
+            num_systeme = random.randrange(3)
             nb_planete = cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
         conn.close()
         return num_systeme

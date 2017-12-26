@@ -1,4 +1,5 @@
-CREATE TABLE planete(
+DROP TABLE Planete;
+CREATE TABLE Planete(
      id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
      name TEXT,
      population INTERGER,
@@ -14,5 +15,7 @@ CREATE TABLE planete(
      attaque INTERGER,
      id_proprio INTERGER,
      systeme INTERGER,
-     galaxie INTERGER
+     galaxie INTERGER,
+     x FLOAT,
+     y FLOAT
 )
