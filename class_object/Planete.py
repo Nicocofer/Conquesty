@@ -54,11 +54,14 @@ class Planete:
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         liste_nom_base=[]
-        nb_planete = cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
-        
+        cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
+        for row in cursor:
+            nb_planete= row[0]
         while nb_planete == 3:
             num_systeme = random.randrange(3)
-            nb_planete = cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
+            cursor.execute("SELECT COUNT(*) FROM planete WHERE systeme =" + str(num_systeme))
+            for row in cursor:
+                nb_planete= row[0]
         conn.close()
         return num_systeme
     
