@@ -3,6 +3,7 @@
 import http.server
 import threading
 import time
+from utils.moteur_planete import population
 
 def serveur():
     PORT = 8888
@@ -21,8 +22,8 @@ def moteur_conquesty():
     i=1
     while i<500:
         time.sleep(1)
-        print(i)
-        i=i+1
+        
+        population()
 
 serveur = threading.Thread(None, serveur)
 moteur = threading.Thread(None, moteur_conquesty)
