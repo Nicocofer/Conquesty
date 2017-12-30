@@ -22,6 +22,7 @@ class Planete:
         self.energie = 100
         self.id_proprio = 0
         self.pop = 0
+        self.pop_max = 10000
         self.type = random.randrange(4)
         self.galaxie = 1
         self.systeme = self.attribution_systemes()
@@ -37,8 +38,8 @@ class Planete:
         
         cursor = conn.cursor()
         print(self.nom)
-        params=(self.nom,self.pop,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie,self.x,self.y)
-        cursor.execute("""INSERT INTO planete(id,name,population,metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,type,armure,attaque,id_proprio,systeme,galaxie,x,y) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)""", params)
+        params=(self.nom,self.pop,self.pop_max,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie,self.x,self.y)
+        cursor.execute("""INSERT INTO planete(id,name,population,population_max,metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,type,armure,attaque,id_proprio,systeme,galaxie,x,y) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)""", params)
         conn.commit()
         conn.close()
     def coord_aleatoire(self):

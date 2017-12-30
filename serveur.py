@@ -21,7 +21,7 @@ def serveur():
 def moteur_conquesty():
     i=1
     while i<500:
-        time.sleep(1)
+        time.sleep(30)
         
         population()
 

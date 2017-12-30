@@ -1,1 +1,1 @@
-insert into planete values (NULL,"P1",0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,200)
+insert into planete values (NULL,"P1",100,1000,0,0,0,0,0,0,0,0,0,0,0,0,1,100,200)
