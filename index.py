@@ -4,6 +4,7 @@
 import cgi 
 import re
 import sqlite3
+from class_object.Planete import Planete
 
 form = cgi.FieldStorage()
 
@@ -13,15 +14,16 @@ cursor = conn.cursor()
 print("Content-type: text/html; charset=utf-8\n")
 
 #recuperation
-cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie FROM Planete""")
+cursor.execute("""SELECT id FROM Planete WHERE systeme=0 and galaxie=1""")
+
+liste_planete_systeme=[]
 for row in cursor:
-    metal=str(row[0])
-    metal_max=str(row[1])
-    cristal=str(row[2])
-    cristal_max=str(row[3])
-    gaz=str(row[4])
-    gaz_max=str(row[5])
-    energie=str(row[6])
+
+    planete = Planete()
+
+    planete.affichage_planete(row[0])
+    liste_planete_systeme.append(planete)
+
 
 
     
@@ -29,21 +31,22 @@ file = open("index.html", "r")
 html=""
 for line in file:
     if line.strip()=="<p id=\"metal\"></p>":
-        html= html +"<p id=\"metal\">" + metal +"/"+ metal_max + "</p>"
+        html= html +"<p id=\"metal\">" + liste_planete_systeme[1].metal +"/"+ liste_planete_systeme[1].metal_max + "</p>"
     elif line.strip()=="<p id=\"cristal\"></p>":
-        html= html +"<p id=\"cristal\">" + cristal+"/"+ cristal_max  + "</p>"
+        html= html +"<p id=\"cristal\">" + liste_planete_systeme[1].cristal+"/"+ liste_planete_systeme[1].cristal_max  + "</p>"
     elif line.strip()=="<p id=\"gaz\"></p>":
-        html= html +"<p id=\"gaz\">" + gaz+"/"+ gaz_max  + "</p>"
+        html= html +"<p id=\"gaz\">" + liste_planete_systeme[1].gaz+"/"+ liste_planete_systeme[1].gaz_max  + "</p>"
     elif line.strip()=="<p id=\"energie\"></p>":
-        html= html +"<p id=\"energie\">" + energie + "</p>"
+        html= html +"<p id=\"energie\">" + liste_planete_systeme[1].energie + "</p>"
     elif line.strip()== "<div class=\"planet type0\" id=\"\" style=\"top:30%;left:30%;\" onclick=\"openbox()\"></div>":
         
-        cursor.execute("""SELECT x,y,type,id FROM Planete WHERE systeme=0 and galaxie=1""")
-        for row in cursor:
-            x = row[0]
-            y = row[1]
-            type_planete = row[2]
-            id_planete = row[3]
+        for planete in liste_planete_systeme:
+            x = planete.x
+            y = planete.y
+            x = float(x)
+            y = float(y)
+            type_planete = planete.type
+            id_planete = planete.id
             if x >= 0:
                 x=50+ (x/100)
             else:

@@ -23,21 +23,26 @@ class Planete:
         self.id_proprio = 0
         self.pop = 0
         self.pop_max = 10000
-        self.type = random.randrange(4)
+        self.type = 0
         self.galaxie = 1
-        self.systeme = self.attribution_systemes()
-        self.nom = self.nom_aleatoire()
+        self.systeme = 0
+        self.nom = 0
         self.armure = 0
         self.attaque = 0
-        self.x=self.coord_aleatoire()
-        self.y=self.coord_aleatoire()
-        
+        self.x = 0
+        self.y = 0
+        self.id = 0
     def creation(self,nb):
         
         conn = sqlite3.connect('Base_conquesty.db3')
         
         cursor = conn.cursor()
         print(self.nom)
+        self.type = random.randrange(4)
+        self.systeme = self.attribution_systemes()
+        self.nom = self.nom_aleatoire()
+        self.x=self.coord_aleatoire()
+        self.y=self.coord_aleatoire()
         params=(self.nom,self.pop,self.pop_max,self.metal,self.metal_max,self.cristal,self.cristal_max,self.gaz,self.gaz_max,self.energie,self.type,self.armure,self.attaque,self.id_proprio,self.systeme,self.galaxie,self.x,self.y)
         cursor.execute("""INSERT INTO planete(id,name,population,population_max,metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,type,armure,attaque,id_proprio,systeme,galaxie,x,y) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)""", params)
         conn.commit()
@@ -85,11 +90,11 @@ class Planete:
         conn.close()
         return nom
 
-    def affichage_planete(self,id_planete,systeme,galaxie):
+    def affichage_planete(self,id_planete):
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         
-        cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie FROM Planete """)
+        cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,x,y,type,id FROM Planete Where id={}""".format(id_planete))
         for row in cursor:
             self.metal=str(row[0])
             self.metal_max=str(row[1])
@@ -98,7 +103,9 @@ class Planete:
             self.gaz=str(row[4])
             self.gaz_max=str(row[5])
             self.energie=str(row[6])
+            self.x = str(row[7])
+            self.y = str(row[8])
+            self.type = str(row[9])
+            self.id = str(row[10])
             
-            
-        
         
