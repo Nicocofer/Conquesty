@@ -85,6 +85,20 @@ class Planete:
         conn.close()
         return nom
 
-
-
+    def affichage_planete(self,id_planete,systeme,galaxie):
+        conn = sqlite3.connect('Base_conquesty.db3')
+        cursor = conn.cursor()
+        
+        cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie FROM Planete """)
+        for row in cursor:
+            self.metal=str(row[0])
+            self.metal_max=str(row[1])
+            self.cristal=str(row[2])
+            self.cristal_max=str(row[3])
+            self.gaz=str(row[4])
+            self.gaz_max=str(row[5])
+            self.energie=str(row[6])
+            
+            
+        
         
