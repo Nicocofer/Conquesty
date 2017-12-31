@@ -203,36 +203,24 @@ header{
 	}
 	
 	#type0 {
-		top: 50%;
-		left: 20%;
-		
 		background-size: 100%;
 		background-image: url(/dist/img/Type0.png);
 		background-repeat: no-repeat; 
 	}
 
 	#type1 {
-		top: 10%;
-		left: 10%;
-		
 		background-size: 100%;
 		background-image: url(/dist/img/Type1.png);
 		background-repeat: no-repeat; 
 	}
 
 	#type2 {
-		top: 30%;
-		left: 60%;
-
 		background-size: 100%;
 		background-image: url(/dist/img/Type2.png);
 		background-repeat: no-repeat; 
 	}
 
 	#type3 {
-		top: 70%;
-		left: 40%;
-
 		background-size: 100%;
 		background-image: url(/dist/img/Type3.png);
 		background-repeat: no-repeat; 
@@ -251,7 +239,7 @@ header{
 		background: red;
 		width: 30px;
 		height: 30px;
-		float: right;;
+		float: right;
 
 	}
 	.close:after {
