@@ -7,23 +7,31 @@ $f: 'Open Sans', sans-serif;
 
 $ft: 'Roboto', sans-serif;
 
+@import url('https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900');
+
+$fo: 'Orbitron', sans-serif;
+
 /* Colors */
 
-$c1: #111; /* couleur du texte*/
-$c2: #fff; /* couleur du fond des cadres */
+$c1: #fff; /* couleur du texte*/
+$c2: #27312F; /* couleur du fond des cadres */
 
 $bx: 0px 0px 10px #666;
 
 /* WEBSITE */
 
 body {
-	font-family: $f;
+	font-family: $fo;
 	margin: auto;
 /*	background-size: cover;
 	background-image: url(/dist/img/bg1.jpg);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+
 	*/
+	background-image: url(/dist/img/bg2.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
 }
 
 
@@ -33,20 +41,20 @@ header{
 	display: flex;
 	justify-content: space-between;
 	height: 50px;
-	opacity: 0.95;
+	opacity: 0.9;
 	
-	box-shadow: $bx;
+	
 
 
 	
 	
 	.logo{
-		font-family: $ft;
+		font-family: $fo;
 		color: $c1;
 		font-size:20px;
 		margin: auto;
 		margin-left: 5%;
-		font-weight: 700;
+		font-weight: 500;
 
 	}
 
@@ -80,7 +88,7 @@ header{
 	height: 60px;
 
 	.boxressources {
-		border: 1px solid #ccc;
+		border: 2px solid #5E7670;
 
 		width: 80px;
 		height: 30px;
@@ -107,6 +115,7 @@ header{
 	margin:auto;
 	margin-top: 2%;
 	color: $c1;
+
 
 
 	
@@ -173,28 +182,26 @@ header{
 		
 		width: 60%;
 
-		border: 1px solid #ccc;
-		background: $c2;
+		border: 1px solid #547168;
+		
 		width: 100%;
 		height: 500px;
-		opacity: 0.9;
+		
 		margin: 50px;
 		margin-top: -20px;
 	}
 
 	#planetebox {
 		/*background: red;*/
-		background-image: url(/dist/img/bg2.png);
-		background-repeat: no-repeat;
-		background-size: 100%;
+		
 		width: 100%;
 		height: 100%;
 		display: flex;
 	}
 
 	.planet {
-		width: 5%;
-		height: 10%;
+		width: 70px;
+		height: 70px;
 		position: relative;
 		border-radius: 100px;
 		/*background: blue;*/
