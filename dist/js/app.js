@@ -1,1 +1,1 @@
-function openbox(){$(".Pdescription").css("display","flex"),console.log(this)}function closebox(){$(".Pdescription").css("display","none")}closebox();
+function openbox(){$(".Pdescription").css("display","flex"),console.log(this)}function closebox(){$(".Pdescription").css("display","none")}$(".planet").click(function(){n="#p"+this.id,$(".boxP").css("display","none"),$(n).css("display","flex"),console.log(n)}),closebox();

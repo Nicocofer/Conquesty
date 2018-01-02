@@ -1,13 +1,12 @@
-// $( ".planet" ).click(function() {
+$( ".planet" ).click(function() {
 
-// 	console.log('Planète de '+this.id);
+	n = '#p'+this.id ;
 
-// 	$("#planetebox").html('<div class="Pdescription"></div>');
-// 	$(".Pdescription").html('<div id="close"></div>');
+	$(".boxP").css('display','none');
+	$(n).css('display','flex');
+	console.log(n);
 
-// 	alert('truc');
-
-// });
+});
 
 // $('#close').click(function(){
 // 		$(".Pdescription").css('display','none');
