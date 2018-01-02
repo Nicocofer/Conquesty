@@ -14,7 +14,7 @@ cursor = conn.cursor()
 print("Content-type: text/html; charset=utf-8\n")
 
 #recuperation
-cursor.execute("""SELECT id FROM Planete WHERE systeme=0 and galaxie=1""")
+cursor.execute("""SELECT id FROM Planete WHERE systeme=1 and galaxie=1""")
 
 liste_planete_systeme=[]
 for row in cursor:
