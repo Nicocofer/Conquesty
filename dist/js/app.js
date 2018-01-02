@@ -1,1 +1,1 @@
-function openbox(){$(".Pdescription").css("display","flex"),console.log(this)}function closebox(){$(".Pdescription").css("display","none")}
+function openbox(){$(".Pdescription").css("display","flex"),console.log(this)}function closebox(){$(".Pdescription").css("display","none")}closebox();
