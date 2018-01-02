@@ -38,6 +38,12 @@ for line in file:
         html= html +"<p id=\"gaz\">" + liste_planete_systeme[1].gaz+"/"+ liste_planete_systeme[1].gaz_max  + "</p>"
     elif line.strip()=="<p id=\"energie\"></p>":
         html= html +"<p id=\"energie\">" + liste_planete_systeme[1].energie + "</p>"
+    elif line.strip()== "<div class=\"boxP\" id=\"\"><div class=\"headP\"><div class=\"nameP\">Name planet</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div></div>":
+           for planete in liste_planete_systeme:
+               id_planete = planete.id
+               nom_planete = planete.nom
+               html= html + "<div class=\"boxP\" id=\"p"+id_planete+"\"><div class=\"headP\"><div class=\"nameP\">"+nom_planete+"</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div></div>"
+               
     elif line.strip()== "<div class=\"planet type0\" id=\"\" style=\"top:30%;left:30%;\" onclick=\"openbox()\"></div>":
         
         for planete in liste_planete_systeme:
