@@ -20,13 +20,12 @@
 
 function openbox() {
    $(".Pdescription").css("display","flex");
-   $(".planet").css("display","none");
+   // $(".planet").css("display","none");
    console.log(this);
 }
 
 function closebox() {
      $(".Pdescription").css('display','none');
-     $(".planet").css("display","flex");
+     // $(".planet").css("display","flex");
 }
 
-closebox();
