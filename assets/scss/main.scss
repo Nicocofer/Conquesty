@@ -244,23 +244,42 @@ header{
 		position: absolute;
 		display: flex;
 		opacity: 0.9;
-		justify-content: flex-end;
+		
 		z-index: 100;
 		
 		
 		
+	}
+
+	.headP {
+		
+		width: 100%;
+		height: 50px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.nameP {
+		margin: auto;
+		margin-left: 2%;
+		width: 60%;
+		
+		border-bottom: 2px solid #48817F;
 	}
 	
 	.close {
 		
 		width: 25px;
 		height: 25px;
-		margin: 5px;
+		margin: auto;
+		margin-right: 2%;
+		line-height: 30px;
 		font-size: 25px;
 		text-align: center;
-		padding-top:5px;
 		color: #48817F;
 		border: 1px solid #48817F;
+		display: flex;
+		padding: auto;
 		
 
 	}

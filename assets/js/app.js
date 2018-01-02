@@ -29,4 +29,3 @@ function closebox() {
      // $(".planet").css("display","flex");
 }
 
-closebox();
