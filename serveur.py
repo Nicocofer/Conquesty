@@ -16,7 +16,7 @@ class Authentification(object):
           <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
           <body>
             <h1>Conquesty</h1>
-            <form method="post" action="conquesty">
+            <form method="post" action="log">
               Login : <input type="text" value="" name="msg" />
               Mot de passe : <input type="password" value="" name="mdp" />
               <button type="submit">Valider</button>
@@ -25,9 +25,8 @@ class Authentification(object):
         </html>"""
     index.exposed = True
 
-    
     @cherrypy.tools.sessions()
-    def conquesty(self, msg, mdp):
+    def log(self, msg, mdp):
         cherrypy.session['user'] = ""
         cherrypy.session['mdp'] =  ""       
 
@@ -45,24 +44,32 @@ class Authentification(object):
             pass
         
         if cherrypy.session['user'] != "" and cherrypy.session['mdp'] !=  "":
-            cursor.execute("SELECT count(*),systeme FROM Planete WHERE id_proprio='"+str(cherrypy.session['id'])+"' GROUP BY systeme ORDER BY count(*) ASC")
-            for row in cursor:
-                systeme= row[1]
-            html = index_conquesty(systeme)
-            return html.encode('latin1')
+            return self.conquesty()
         else:
             return """<html>
               <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
               <body>
               <p>Login ou mot de passe non valide</p>
                <h1>Conquesty</h1>
-                <form method="post" action="conquesty">
+                <form method="post" action="log">
                   Login : <input type="text" value="" name="msg" />
                   Mot de passe : <input type="password" value="" name="mdp" />
                   <button type="submit">Valider</button>
                 </form>
               </body>
             </html>"""
+    log.exposed = True
+    
+    @cherrypy.tools.sessions()
+    def conquesty(self):
+            conn = sqlite3.connect('Base_conquesty.db3')
+            cursor = conn.cursor()
+            cursor.execute("SELECT count(*),systeme FROM Planete WHERE id_proprio='"+str(cherrypy.session['id'])+"' GROUP BY systeme ORDER BY count(*) ASC")
+            for row in cursor:
+                systeme= row[1]
+            html = index_conquesty(systeme)
+            return html.encode('latin1')
+        
     conquesty.exposed = True
     
     
