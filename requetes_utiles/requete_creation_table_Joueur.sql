@@ -1,0 +1,7 @@
+DROP TABLE Joueur;
+CREATE TABLE Joueur(
+     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+     name TEXT,
+     mdp TEXT,
+     credit INTEGER
+)

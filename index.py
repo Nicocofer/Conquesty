@@ -7,14 +7,14 @@ import sqlite3
 from class_object.Planete import Planete
 
 #form = cgi.FieldStorage()
-def index_conquesty():
+def index_conquesty(systeme):
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
 
     print("Content-type: text/html; charset=utf-8\n")
 
     #recuperation
-    cursor.execute("""SELECT id FROM Planete WHERE systeme=1 and galaxie=1""")
+    cursor.execute("SELECT id FROM Planete WHERE systeme="+str(systeme)+" and galaxie=1")
 
     liste_planete_systeme=[]
     for row in cursor:

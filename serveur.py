@@ -6,7 +6,7 @@ import os
 import time
 from utils.moteur_planete import population
 from index import index_conquesty
-import dist
+import sqlite3
 import cherrypy
 
 class Authentification(object):
@@ -17,6 +17,7 @@ class Authentification(object):
           <body>
             <form method="post" action="conquesty">
               Login : <input type="text" value="" name="msg" />
+              Mot de passe : <input type="password" value="" name="mdp" />
               <button type="submit">Valider</button>
             </form>
           </body>
@@ -25,19 +26,43 @@ class Authentification(object):
 
     
     @cherrypy.tools.sessions()
-    def conquesty(self, msg):
-        html = index_conquesty()
-        cherrypy.session['user'] = msg
-        return html.encode('latin1')
+    def conquesty(self, msg, mdp):
+        cherrypy.session['user'] = ""
+        cherrypy.session['mdp'] =  ""       
+
+        conn = sqlite3.connect('Base_conquesty.db3')
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT name,mdp,id FROM Joueur WHERE name='"+str(msg)+"' and mdp='"+str(mdp)+"'")
+            for row in cursor:
+                cherrypy.session['user'] = row[0]
+                cherrypy.session['mdp'] = row[1]
+                cherrypy.session['id'] = row[2]
+        except:
+            pass
+        else:
+            pass
+        
+        if cherrypy.session['user'] != "" and cherrypy.session['mdp'] !=  "":
+            cursor.execute("SELECT count(*),systeme FROM Planete WHERE id_proprio='"+str(cherrypy.session['id'])+"' GROUP BY systeme ORDER BY count(*) ASC")
+            for row in cursor:
+                systeme= row[1]
+            html = index_conquesty(systeme)
+            return html.encode('latin1')
+        else:
+            return """<html>
+              <head></head>
+              <body>
+              <h1>Login ou mot de passe non valide</h1>
+                <form method="post" action="conquesty">
+                  Login : <input type="text" value="" name="msg" />
+                  Mot de passe : <input type="password" value="" name="mdp" />
+                  <button type="submit">Valider</button>
+                </form>
+              </body>
+            </html>"""
     conquesty.exposed = True
-    @cherrypy.tools.sessions()
-    def page2(self):
-        return cherrypy.session['user'] + "<a href='page1'> Suivant</a>"
-    page2.exposed = True
-    @cherrypy.tools.sessions()
-    def page1(self):
-        return cherrypy.session['user'] + "<a href='page2'> Suivant</a>"
-    page1.exposed = True
+    
     
 def serveur():
     configfile=os.path.join(os.path.dirname(__file__),r"config.conf")
