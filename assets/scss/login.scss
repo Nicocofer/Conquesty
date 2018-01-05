@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900');
+
+$fo: 'Orbitron', sans-serif;
+
+
+html {
+	background: #27312F;
+	font-family: $fo;
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+
+body{
+	width: 50%;
+	display: flex;
+	color:white;
+	margin: auto;
+	flex-direction: column;
+}
+
+button {
+	font-family: $fo;
+	border-radius: 20px;
+	margin:auto;
+	margin-top: 20px;
+	width: 50%;
+	height: 30px;
+}
+
+button:hover {
+	background: none;
+}
+
+h1 {
+	text-align: center;
+	font-size: 50px;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	justify-content: center;
+	margin: auto;
+}

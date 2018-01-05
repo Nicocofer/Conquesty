@@ -13,8 +13,9 @@ class Authentification(object):
     @cherrypy.tools.sessions()
     def index(self):
         return """<html>
-          <head></head>
+          <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
           <body>
+            <h1>Conquesty</h1>
             <form method="post" action="conquesty">
               Login : <input type="text" value="" name="msg" />
               Mot de passe : <input type="password" value="" name="mdp" />
@@ -51,9 +52,10 @@ class Authentification(object):
             return html.encode('latin1')
         else:
             return """<html>
-              <head></head>
+              <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
               <body>
-              <h1>Login ou mot de passe non valide</h1>
+              <p>Login ou mot de passe non valide</p>
+               <h1>Conquesty</h1>
                 <form method="post" action="conquesty">
                   Login : <input type="text" value="" name="msg" />
                   Mot de passe : <input type="password" value="" name="mdp" />
