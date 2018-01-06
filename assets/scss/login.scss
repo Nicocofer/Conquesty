@@ -116,3 +116,24 @@ p {
 	font-family: $fo;
 	font-weight: 900;
 }
+
+
+
+
+
+@media screen and (max-width: 500px)  {
+	body{
+		width: 100%;
+
+
+	}
+
+	h1 {
+		font-size: 40px;
+		
+	}
+
+	form{
+		width: 70%;
+	}
+}
