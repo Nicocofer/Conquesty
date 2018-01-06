@@ -15,18 +15,11 @@ class Authentification(object):
         cherrypy.session['user'] = ""
         cherrypy.session['mdp'] = ""
         cherrypy.session['id'] = ""
-        return """<html>
-          <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
-          <body>
-            <h1>Conquesty</h1>
-            <form method="post" action="log">
-              Login : <input type="text" value="" name="msg" />
-              Mot de passe : <input type="password" value="" name="mdp" />
-              <button type="submit">Valider</button>
-              <a href="inscription">Insciption</a>
-            </form>
-          </body>
-        </html>"""
+        file = open("login.html", "r")
+        html=""
+        for line in file:
+            html = html + line
+        return html
     index.exposed = True
 
     @cherrypy.tools.sessions()
@@ -50,19 +43,14 @@ class Authentification(object):
         if cherrypy.session['user'] != "" and cherrypy.session['mdp'] !=  "":
             return self.conquesty()
         else:
-            return """<html>
-              <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
-              <body>
-              <p>Login ou mot de passe non valide</p>
-               <h1>Conquesty</h1>
-                <form method="post" action="log">
-                  Login : <input type="text" value="" name="msg" />
-                  Mot de passe : <input type="password" value="" name="mdp" />
-                  <button type="submit">Valider</button>
-                  <a href="inscription">Insciption</a>
-                </form>
-              </body>
-            </html>"""
+            file = open("login.html", "r")
+            html=""
+            for line in file:
+                if line.strip()== "<p class=\"novalide\"></p>":
+                    html = html + "<p class=\"novalide\">Login ou mot de passe non valide</p>"
+                else:
+                    html = html + line
+            return html
     log.exposed = True
     
     @cherrypy.tools.sessions()
