@@ -108,5 +108,15 @@ class Planete:
             self.type = str(row[9])
             self.id = str(row[10])
             self.nom= str(row[11])
+<<<<<<< HEAD
             
+=======
+            self.id_proprio= str(row[12])
+            self.attaque= str(row[13])
+            self.armure= str(row[14])
+            self.systeme = str(row[15])
+            self.galaxie = str(row[16])
+            self.pop = str(row[17])
+            self.pop_max = str(row[18])
+>>>>>>> 5a043b17c0d1e6466cd43b3efba16e0c6dbf3b54
         
