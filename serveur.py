@@ -57,12 +57,18 @@ class Authentification(object):
     def conquesty(self):
             conn = sqlite3.connect('Base_conquesty.db3')
             cursor = conn.cursor()
-            cursor.execute("SELECT count(*),systeme FROM Planete WHERE id_proprio='"+str(cherrypy.session['id'])+"' GROUP BY systeme ORDER BY count(*) ASC")
-            for row in cursor:
-                systeme= row[1]
-            html = index_conquesty(systeme)
-            return html.encode('latin1')
-        
+            try:
+                cursor.execute("SELECT count(*),systeme FROM Planete WHERE id_proprio='"+str(cherrypy.session['id'])+"' GROUP BY systeme ORDER BY count(*) ASC")
+                for row in cursor:
+                    systeme= row[1]
+                html = index_conquesty(systeme)
+                return html.encode('latin1')
+            except:
+                html = index_conquesty(0)
+                return html.encode('latin1')
+            else:
+                html = index_conquesty(0)
+                return html.encode('latin1')
     conquesty.exposed = True
     @cherrypy.tools.sessions()
     def inscription(self):
@@ -71,7 +77,7 @@ class Authentification(object):
               <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
               <body>
                <h1>Conquesty</h1>
-                <form method="post" action="log">
+                <form method="post" action="inscriptionbase">
                   Login : <input type="text" value="" name="msg" />
                   Mot de passe : <input type="password" value="" name="mdp" />
                   Adresse mail : <input type="email" value="" name="mail" />
@@ -81,6 +87,18 @@ class Authentification(object):
             </html>"""
         
     inscription.exposed = True
+    def inscriptionbase(self,msg,mdp,mail):
+        conn = sqlite3.connect('Base_conquesty.db3')
+        cursor = conn.cursor()
+            
+        return """<html>
+              <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
+              <body>
+               <h1>Merci pour votre inscription. <a href="index">Se connecter</a></h1>
+              </body>
+            </html>"""
+        
+    inscriptionbase.exposed = True
     
     
 def serveur():
