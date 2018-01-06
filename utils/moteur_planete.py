@@ -10,11 +10,10 @@ def max_pop():
     cursor.execute("SELECT id FROM planete")
     max_pop=0
     for row in cursor.fetchall():
-        cursor_batiment.execute("SELECT type,niveau FROM batiment WHERE id_planete='"+str(row[0])+"'")
+        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=1")
         max_pop=0
         for bat in cursor_batiment.fetchall():
-            if bat[0] <= 3:
-                max_pop = max_pop + (bat[0] * bat[1] * 100000)
+            max_pop = max_pop + (bat[0] * 100000)
         cursor.execute("UPDATE Planete SET population_max = "+str(int(max_pop))+" WHERE ID =" +str(row[0]))
         conn.commit()
         
@@ -40,7 +39,7 @@ def population():
                     pop=pop + float(pop)*0.001*random.randrange(9)
                 else:
                     pop=pop + float(pop)*0.001*random.randrange(4)
-        print(pop)
+        
         
         cursor.execute("UPDATE Planete SET population = "+str(int(pop))+" WHERE ID =" +str(row[0]))
         conn.commit()
