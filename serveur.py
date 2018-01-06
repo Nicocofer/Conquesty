@@ -23,6 +23,7 @@ class Authentification(object):
               Login : <input type="text" value="" name="msg" />
               Mot de passe : <input type="password" value="" name="mdp" />
               <button type="submit">Valider</button>
+              <a href="inscription">Insciption</a>
             </form>
           </body>
         </html>"""
@@ -58,6 +59,7 @@ class Authentification(object):
                   Login : <input type="text" value="" name="msg" />
                   Mot de passe : <input type="password" value="" name="mdp" />
                   <button type="submit">Valider</button>
+                  <a href="inscription">Insciption</a>
                 </form>
               </body>
             </html>"""
@@ -74,6 +76,23 @@ class Authentification(object):
             return html.encode('latin1')
         
     conquesty.exposed = True
+    @cherrypy.tools.sessions()
+    def inscription(self):
+        
+            return """<html>
+              <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
+              <body>
+               <h1>Conquesty</h1>
+                <form method="post" action="log">
+                  Login : <input type="text" value="" name="msg" />
+                  Mot de passe : <input type="password" value="" name="mdp" />
+                  Adresse mail : <input type="email" value="" name="msg" />
+                  <button type="submit">Inscription</button>
+                </form>
+              </body>
+            </html>"""
+        
+    inscription.exposed = True
     
     
 def serveur():
