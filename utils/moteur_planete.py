@@ -95,9 +95,9 @@ def metal():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
-    cursor.execute("SELECT id, metal,type,metal_max,energie FROM planete")
+    cursor.execute("SELECT id, metal,type,metal_max,energie,population FROM planete")
     for row in cursor.fetchall():
-        if row[4] > 0:
+        if row[4] > 0 and row[5] > 0:
             cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=2")
             metal_a_ajouter=0
             for bat in cursor_batiment.fetchall():
@@ -116,9 +116,9 @@ def cristal():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
-    cursor.execute("SELECT id, cristal,type,cristal_max,energie FROM planete")
+    cursor.execute("SELECT id, cristal,type,cristal_max,energie,population FROM planete")
     for row in cursor.fetchall():
-        if row[4] > 0:
+        if row[4] > 0 and row[5] > 0:
             cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=4")
             cristal_a_ajouter=0
             for bat in cursor_batiment.fetchall():
@@ -137,9 +137,9 @@ def gaz():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
-    cursor.execute("SELECT id, gaz,type,gaz_max,energie FROM planete")
+    cursor.execute("SELECT id, gaz,type,gaz_max,energie,population FROM planete")
     for row in cursor.fetchall():
-        if row[4] > 0:
+        if row[4] > 0 and row[5] > 0:
             cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=6")
             gaz_a_ajouter=0
             for bat in cursor_batiment.fetchall():
