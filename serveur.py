@@ -19,7 +19,7 @@ class Authentification(object):
         html=""
         for line in file:
             html = html + line
-        return html
+        return html.encode('latin1')
     index.exposed = True
 
     @cherrypy.tools.sessions()
@@ -50,7 +50,7 @@ class Authentification(object):
                     html = html + "<p class=\"novalide\">Login ou mot de passe non valide</p>"
                 else:
                     html = html + line
-            return html
+            return html.encode('latin1')
     log.exposed = True
     
     @cherrypy.tools.sessions()
