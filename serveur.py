@@ -4,7 +4,7 @@ import http.server
 import threading
 import os
 import time
-from utils.moteur_planete import population
+from utils.moteur_planete import population,max_pop
 from index import index_conquesty
 import sqlite3
 import cherrypy
@@ -12,6 +12,9 @@ import cherrypy
 class Authentification(object):
     @cherrypy.tools.sessions()
     def index(self):
+        cherrypy.session['user'] = ""
+        cherrypy.session['mdp'] = ""
+        cherrypy.session['id'] = ""
         return """<html>
           <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
           <body>
@@ -96,7 +99,7 @@ def moteur_conquesty():
     i=1
     while i<500:
         time.sleep(30)
-        
+        max_pop()
         population()
 
 serveur = threading.Thread(None, serveur)
