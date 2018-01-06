@@ -98,6 +98,7 @@ class Authentification(object):
 def serveur():
     configfile=os.path.join(os.path.dirname(__file__),r"config.conf")
     application = cherrypy.tree.mount(Authentification(), '/')
+    cherrypy.config.update({'server.socket_host': '0.0.0.0'} )  
     cherrypy.quickstart(application, config=configfile)
     
 """    
