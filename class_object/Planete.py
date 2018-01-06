@@ -114,5 +114,5 @@ class Planete:
             self.systeme = str(row[15])
             self.galaxie = str(row[16])
             self.pop = str(row[17])
-            self.pop_max = str(row[16])
+            self.pop_max = str(row[18])
         
