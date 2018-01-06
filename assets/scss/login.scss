@@ -66,12 +66,13 @@ input {
 .selection {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
 }
 
 button {
 	font-family: $fo;
 	border-radius: 0px;
-	margin:auto;
 	margin-top: 20px;
 	width: 45%;
 	height: 30px;
@@ -90,6 +91,17 @@ button:hover {
 
 a {
 	text-decoration: none;
+	font-family: $fo;
+	border-radius: 0px;
+	margin-top: 20px;
+	width: 45%;
+	height: 20px;
+	background: white;
+	color: #27312F;
+	border: none;
+	text-align: center;
+	padding: 5px;
+	
 }
 
 p { 
