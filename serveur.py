@@ -90,7 +90,9 @@ class Authentification(object):
     def inscriptionbase(self,msg,mdp,mail):
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
-            
+        cursor.execute("INSERT INTO Joueur(id,name,mdp,mail,credit) VALUES (NULL,'"+str(msg)+"','"+str(mdp)+"','"+str(mail)+"',0)")
+        conn.commit()
+        conn.close()
         return """<html>
               <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
               <body>
