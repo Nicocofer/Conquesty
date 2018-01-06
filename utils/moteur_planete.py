@@ -24,7 +24,50 @@ def hangar_metal():
         cursor.execute("UPDATE Planete SET metal_max = "+str(int(max_metal))+" WHERE ID =" +str(row[0]))
         conn.commit()
     conn.close()
+    
+def hangar_cristal():
+    """
 
+    Calcul de la cristal max pour chaque planete en fonction de leurs batiments
+
+    max cristal = somme de (niv * 10 000)
+
+    """
+    conn = sqlite3.connect('Base_conquesty.db3')
+    cursor = conn.cursor()
+    cursor_batiment = conn.cursor()
+    cursor.execute("SELECT id FROM planete")
+    max_cristal=0
+    for row in cursor.fetchall():
+        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=5")
+        max_cristal=0
+        for bat in cursor_batiment.fetchall():
+            max_cristal = max_cristal + (bat[0] * 10000)
+        cursor.execute("UPDATE Planete SET cristal_max = "+str(int(max_cristal))+" WHERE ID =" +str(row[0]))
+        conn.commit()
+    conn.close()
+    
+def hangar_gaz():
+    """
+
+    Calcul de la gaz max pour chaque planete en fonction de leurs batiments
+
+    max gaz = somme de (niv * 10 000)
+
+    """
+    conn = sqlite3.connect('Base_conquesty.db3')
+    cursor = conn.cursor()
+    cursor_batiment = conn.cursor()
+    cursor.execute("SELECT id FROM planete")
+    max_gaz=0
+    for row in cursor.fetchall():
+        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=7")
+        max_gaz=0
+        for bat in cursor_batiment.fetchall():
+            max_gaz = max_gaz + (bat[0] * 10000)
+        cursor.execute("UPDATE Planete SET gaz_max = "+str(int(max_gaz))+" WHERE ID =" +str(row[0]))
+        conn.commit()
+    conn.close()
     
 def max_pop():
     """
@@ -47,6 +90,7 @@ def max_pop():
         cursor.execute("UPDATE Planete SET population_max = "+str(int(max_pop))+" WHERE ID =" +str(row[0]))
         conn.commit()
     conn.close()
+    
 def metal():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
@@ -67,6 +111,45 @@ def metal():
         conn.commit()
     conn.close()
     
+def cristal():
+    conn = sqlite3.connect('Base_conquesty.db3')
+    cursor = conn.cursor()
+    cursor_batiment = conn.cursor()
+    cursor.execute("SELECT id, cristal,type,cristal_max FROM planete")
+    for row in cursor.fetchall():
+        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=4")
+        cristal_a_ajouter=0
+        for bat in cursor_batiment.fetchall():
+            cristal_a_ajouter = cristal_a_ajouter + (bat[0] * 1)
+            
+        if row[1] >= row[3]:
+            cristal = row[3]
+        else:
+            cristal = cristal_a_ajouter + row[1]
+            
+        cursor.execute("UPDATE Planete SET cristal = "+str(int(cristal))+" WHERE ID =" +str(row[0]))
+        conn.commit()
+    conn.close()
+    
+def gaz():
+    conn = sqlite3.connect('Base_conquesty.db3')
+    cursor = conn.cursor()
+    cursor_batiment = conn.cursor()
+    cursor.execute("SELECT id, gaz,type,gaz_max FROM planete")
+    for row in cursor.fetchall():
+        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=6")
+        gaz_a_ajouter=0
+        for bat in cursor_batiment.fetchall():
+            gaz_a_ajouter = gaz_a_ajouter + (bat[0] * 1)
+            
+        if row[1] >= row[3]:
+            gaz = row[3]
+        else:
+            gaz = gaz_a_ajouter + row[1]
+            
+        cursor.execute("UPDATE Planete SET gaz = "+str(int(gaz))+" WHERE ID =" +str(row[0]))
+        conn.commit()
+    conn.close()    
 def population():
     """
 
