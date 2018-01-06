@@ -94,7 +94,7 @@ class Planete:
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         
-        cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,x,y,type,id,name FROM Planete Where id={}""".format(id_planete))
+        cursor.execute("""SELECT metal,metal_max,cristal,cristal_max,gaz,gaz_max,energie,x,y,type,id,name,id_proprio,attaque,armure,systeme,galaxie,population,population_max FROM Planete Where id={}""".format(id_planete))
         for row in cursor:
             self.metal=str(row[0])
             self.metal_max=str(row[1])
@@ -108,5 +108,11 @@ class Planete:
             self.type = str(row[9])
             self.id = str(row[10])
             self.nom= str(row[11])
-            
+            self.id_proprio= str(row[12])
+            self.attaque= str(row[13])
+            self.armure= str(row[14])
+            self.systeme = str(row[15])
+            self.galaxie = str(row[16])
+            self.pop = str(row[17])
+            self.pop_max = str(row[16])
         
