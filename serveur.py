@@ -4,7 +4,7 @@ import http.server
 import threading
 import os
 import time
-from utils.moteur_planete import population, max_pop, hangar_metal
+from utils.moteur_planete import population, max_pop, hangar_metal, metal
 from index import index_conquesty
 import sqlite3
 import cherrypy
@@ -97,6 +97,7 @@ def serveur():
 def moteur_planete():
         max_pop()
         hangar_metal()
+        metal()
         population()
         
 def moteur_conquesty():
