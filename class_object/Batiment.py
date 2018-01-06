@@ -19,7 +19,7 @@ class Batiment:
 
         """
 
-    def attribut_batiment(self,id_batiment):
+    def attribution_batiment(self,id_batiment):
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
         
