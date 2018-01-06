@@ -95,61 +95,82 @@ def metal():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
-    cursor.execute("SELECT id, metal,type,metal_max FROM planete")
+    cursor.execute("SELECT id, metal,type,metal_max,energie FROM planete")
     for row in cursor.fetchall():
-        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=2")
-        metal_a_ajouter=0
-        for bat in cursor_batiment.fetchall():
-            metal_a_ajouter = metal_a_ajouter + (bat[0] * 1)
-            
-        if row[1] >= row[3]:
-            metal = row[3]
-        else:
-            metal = metal_a_ajouter + row[1]
-            
-        cursor.execute("UPDATE Planete SET metal = "+str(int(metal))+" WHERE ID =" +str(row[0]))
-        conn.commit()
+        if row[4] > 0:
+            cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=2")
+            metal_a_ajouter=0
+            for bat in cursor_batiment.fetchall():
+                metal_a_ajouter = metal_a_ajouter + (bat[0] * 1)
+                
+            if row[1] >= row[3]:
+                metal = row[3]
+            else:
+                metal = metal_a_ajouter + row[1]
+                
+            cursor.execute("UPDATE Planete SET metal = "+str(int(metal))+" WHERE ID =" +str(row[0]))
+            conn.commit()
     conn.close()
     
 def cristal():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
-    cursor.execute("SELECT id, cristal,type,cristal_max FROM planete")
+    cursor.execute("SELECT id, cristal,type,cristal_max,energie FROM planete")
     for row in cursor.fetchall():
-        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=4")
-        cristal_a_ajouter=0
-        for bat in cursor_batiment.fetchall():
-            cristal_a_ajouter = cristal_a_ajouter + (bat[0] * 1)
-            
-        if row[1] >= row[3]:
-            cristal = row[3]
-        else:
-            cristal = cristal_a_ajouter + row[1]
-            
-        cursor.execute("UPDATE Planete SET cristal = "+str(int(cristal))+" WHERE ID =" +str(row[0]))
-        conn.commit()
+        if row[4] > 0:
+            cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=4")
+            cristal_a_ajouter=0
+            for bat in cursor_batiment.fetchall():
+                cristal_a_ajouter = cristal_a_ajouter + (bat[0] * 1)
+                
+            if row[1] >= row[3]:
+                cristal = row[3]
+            else:
+                cristal = cristal_a_ajouter + row[1]
+                
+            cursor.execute("UPDATE Planete SET cristal = "+str(int(cristal))+" WHERE ID =" +str(row[0]))
+            conn.commit()
     conn.close()
     
 def gaz():
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
-    cursor.execute("SELECT id, gaz,type,gaz_max FROM planete")
+    cursor.execute("SELECT id, gaz,type,gaz_max,energie FROM planete")
     for row in cursor.fetchall():
-        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=6")
-        gaz_a_ajouter=0
+        if row[4] > 0:
+            cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=6")
+            gaz_a_ajouter=0
+            for bat in cursor_batiment.fetchall():
+                gaz_a_ajouter = gaz_a_ajouter + (bat[0] * 1)
+                
+            if row[1] >= row[3]:
+                gaz = row[3]
+            else:
+                gaz = gaz_a_ajouter + row[1]
+                
+            cursor.execute("UPDATE Planete SET gaz = "+str(int(gaz))+" WHERE ID =" +str(row[0]))
+            conn.commit()
+    conn.close()
+
+def energie():
+    conn = sqlite3.connect('Base_conquesty.db3')
+    cursor = conn.cursor()
+    cursor_batiment = conn.cursor()
+    cursor.execute("SELECT id, energie FROM planete")
+    for row in cursor.fetchall():
+        cursor_batiment.execute("SELECT niveau,type FROM batiment WHERE id_planete='"+str(row[0])+"'")
+        energie = 0
         for bat in cursor_batiment.fetchall():
-            gaz_a_ajouter = gaz_a_ajouter + (bat[0] * 1)
-            
-        if row[1] >= row[3]:
-            gaz = row[3]
-        else:
-            gaz = gaz_a_ajouter + row[1]
-            
-        cursor.execute("UPDATE Planete SET gaz = "+str(int(gaz))+" WHERE ID =" +str(row[0]))
+            if bat[1] == 8:
+                energie = energie + (bat[0] * 10)
+            else:
+                energie = energie - (bat[0] * 10)
+        cursor.execute("UPDATE Planete SET energie = "+str(energie)+" WHERE ID =" +str(row[0]))
         conn.commit()
-    conn.close()    
+    conn.close()
+    
 def population():
     """
 
