@@ -3,7 +3,29 @@
 import sqlite3
 import random
 
+def hangar_metal():
+    conn = sqlite3.connect('Base_conquesty.db3')
+    cursor = conn.cursor()
+    cursor_batiment = conn.cursor()
+    cursor.execute("SELECT id FROM planete")
+    max_metal=0
+    for row in cursor.fetchall():
+        cursor_batiment.execute("SELECT niveau FROM batiment WHERE id_planete='"+str(row[0])+"' and type=3")
+        max_metal=0
+        for bat in cursor_batiment.fetchall():
+            max_metal = max_metal + (bat[0] * 10000)
+        cursor.execute("UPDATE Planete SET metal_max = "+str(int(max_metal))+" WHERE ID =" +str(row[0]))
+        conn.commit()
+    conn.close()
+    
 def max_pop():
+    """
+
+    Calcul de la population max pour chaque planete en fonction de leurs batiments
+
+    max pop = somme de (niv * 100 000)
+
+    """
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor_batiment = conn.cursor()
@@ -16,8 +38,14 @@ def max_pop():
             max_pop = max_pop + (bat[0] * 100000)
         cursor.execute("UPDATE Planete SET population_max = "+str(int(max_pop))+" WHERE ID =" +str(row[0]))
         conn.commit()
-        
+    conn.close()
+    
 def population():
+    """
+
+    Calcul de la population pour chaque planete
+
+    """
     conn = sqlite3.connect('Base_conquesty.db3')
     cursor = conn.cursor()
     cursor.execute("SELECT id, population,type,population_max FROM planete")

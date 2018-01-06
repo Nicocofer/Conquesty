@@ -4,7 +4,7 @@ import http.server
 import threading
 import os
 import time
-from utils.moteur_planete import population,max_pop
+from utils.moteur_planete import population, max_pop, hangar_metal
 from index import index_conquesty
 import sqlite3
 import cherrypy
@@ -94,13 +94,16 @@ def serveur():
     httpd = server(server_address, handler)
     httpd.serve_forever()"""
 
-
+def moteur_planete():
+        max_pop()
+        hangar_metal()
+        population()
+        
 def moteur_conquesty():
     i=1
     while i<500:
         time.sleep(30)
-        max_pop()
-        population()
+        moteur_planete()
 
 serveur = threading.Thread(None, serveur)
 moteur = threading.Thread(None, moteur_conquesty)
