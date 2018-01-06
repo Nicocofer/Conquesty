@@ -19,4 +19,4 @@ function closebox() {
      // $(".planet").css("display","flex");
 }
 
-// closebox();
+closebox();
