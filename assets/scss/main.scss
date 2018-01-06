@@ -30,8 +30,8 @@ body {
 
 	*/
 	background-image: url(/dist/img/bg2.png);
-		background-repeat: no-repeat;
-		background-size: 100%;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
 
@@ -79,33 +79,7 @@ header{
 	
 }
 
-.ressources {
 
-	width: 40%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin: auto;
-	height: 60px;
-
-	.boxressources {
-		border: 2px solid #5E7670;
-
-		width: 80px;
-		height: 30px;
-		margin:auto;
-	}
-
-	p {
-		margin: 0;
-		text-align: center;
-
-	}
-
-
-
-
-}
 
 .wrapper{
 	
@@ -243,6 +217,7 @@ header{
 		background: $c2;
 		position: absolute;
 		display: flex;
+		flex-direction: column;
 		opacity: 0.9;
 		
 		z-index: 100;
@@ -253,6 +228,7 @@ header{
 
 	.boxP {
 		display: flex;
+		flex-direction: column;
 		width: 100%;
 		height: 100%;
 	}
@@ -289,5 +265,86 @@ header{
 		
 
 	}
+
+	.bodyP {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.bodyP-top {
+		height: 200px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top: 20px;
+
+	}
+
+	.bodyP-left {
+		width: 40%;
+		margin:auto;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
+
+	.bodyP-right {
+		width: 40%;
+		margin:auto;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
+
+	.Pparam {
+		background: #1C2422;
+		height: 50px;
+		font-size: 12px;
+		padding: 10px;
+		margin-bottom: 10px;
+
+	}
+	.bodyP-bottom {
+		margin-top: 50px;
+	}
 	
+	.ressources {
+
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin: auto;
+		height: 100px;
+		background: #1C2422;
+		margin-top: 20px;
+
+
+
+		p {
+			margin: 0;
+			text-align: center;
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+		}
+		
+		.ressources-box {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			margin: auto;
+			height: 100%;
+		}
+
+
+
+	}
+
+	.Rtitle {
+		margin: auto;
+		width: 70%;
+		text-align: center;
+		border-bottom: 2px solid #48817F;
+	}
 }
