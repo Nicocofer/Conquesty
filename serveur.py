@@ -86,7 +86,7 @@ class Authentification(object):
                 <form method="post" action="log">
                   Login : <input type="text" value="" name="msg" />
                   Mot de passe : <input type="password" value="" name="mdp" />
-                  Adresse mail : <input type="email" value="" name="msg" />
+                  Adresse mail : <input type="email" value="" name="mail" />
                   <button type="submit">Inscription</button>
                 </form>
               </body>
