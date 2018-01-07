@@ -106,14 +106,14 @@ class Authentification(object):
         cursor = conn.cursor()
         html=""
         try:
-            cursor.execute("SELECT * FROM Batiment WHERE id='"+str(id_planete])+"'")
+            cursor.execute("SELECT * FROM Batiment WHERE id_planete="+str(id_planete))
             for row in cursor:
-                html=html + str(row[0])+"<br/>"
+                html=html + str(row[3])+"<br/>"
             return html
         except:
-            return "pas de batiment"
+            return "pas de batiment"+str(id_planete)
         else:
-            return "pas de batiment
+            return "pas de batiment"+str(id_planete)
     batiment.exposed = True
     
     
