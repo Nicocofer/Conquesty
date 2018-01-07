@@ -30,19 +30,11 @@ def index_conquesty(systeme):
     file = open("index.html", "r")
     html=""
     for line in file:
-        if line.strip()=="<p id=\"metal\"></p>":
-            html= html +"<p id=\"metal\">" + liste_planete_systeme[1].metal +"/"+ liste_planete_systeme[1].metal_max + "</p>"
-        elif line.strip()=="<p id=\"cristal\"></p>":
-            html= html +"<p id=\"cristal\">" + liste_planete_systeme[1].cristal+"/"+ liste_planete_systeme[1].cristal_max  + "</p>"
-        elif line.strip()=="<p id=\"gaz\"></p>":
-            html= html +"<p id=\"gaz\">" + liste_planete_systeme[1].gaz+"/"+ liste_planete_systeme[1].gaz_max  + "</p>"
-        elif line.strip()=="<p id=\"energie\"></p>":
-            html= html +"<p id=\"energie\">" + liste_planete_systeme[1].energie + "</p>"
-        elif line.strip()== "<div class=\"boxP\" id=\"\"><div class=\"headP\"><div class=\"nameP\">Name planet</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div></div>":
-               for planete in liste_planete_systeme:
-                   id_planete = planete.id
-                   nom_planete = planete.nom
-                   html= html + "<div class=\"boxP\" id=\"p"+id_planete+"\"><div class=\"headP\"><div class=\"nameP\">"+nom_planete+"</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div></div>"
+        if line.strip()=="<div class=\"boxP\" id=\"\"><div class=\"headP\"><div class=\"nameP\">Name planet</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div><div class=\"bodyP\"><div class=\"bodyP-top\"><div class=\"bodyP-left\"><div class=\"Pparam\">Type :</div><div class=\"Pparam\">Propriaitaire :</div><div class=\"Pparam\">Attaque :  <br> Defense :</div></div><div class=\"bodyP-right\"><div class=\"Pparam\">Systeme solaire : <br>Galaxie :</div><div class=\"Pparam\">Coordonnees<br> x :   / y :</div><div class=\"Pparam\">Population :</div></div></div><div class=\"bodyP-bottom\"><div class=\"Rtitle\">Ressouces de la planete</div><div class=\"ressources\"><div class=\"ressources-box\"><p id=\"metal\">metal :</p><p id=\"cristal\">cristal :</p></div><div class=\"ressources-box\"><p id=\"gaz\">gaz :</p><p id=\"energie\">energie :</p></div></div></div></div></div>":
+            for planete in liste_planete_systeme:
+
+                html= html +"<div class=\"boxP\" id=\"p"+planete.id+"\"><div class=\"headP\"><div class=\"nameP\">"+planete.nom+"</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div><div class=\"bodyP\"><div class=\"bodyP-top\"><div class=\"bodyP-left\"><div class=\"Pparam\">Type :"+planete.type+"</div><div class=\"Pparam\">Propriaitaire :"+planete.id_proprio+"</div><div class=\"Pparam\">Attaque : "+planete.attaque+" <br> Defense :"+planete.armure+"</div></div><div class=\"bodyP-right\"><div class=\"Pparam\">Syst&egrave;me solaire : "+planete.systeme+"<br>Galaxie :"+planete.galaxie+"</div><div class=\"Pparam\">Coordonn&eacute;es<br> x : "+planete.x+"  / y : "+planete.y+"</div><div class=\"Pparam\">Population :"+planete.pop+"/"+planete.pop_max+"</div></div></div><div class=\"bodyP-bottom\"><div class=\"Rtitle\">Ressouces de la plan&egrave;te</div><div class=\"ressources\"><div class=\"ressources-box\"><p id=\"metal\">m&eacute;tal : "+planete.metal+"/"+planete.metal_max+"</p><p id=\"cristal\">cristal : "+planete.cristal+"/"+planete.cristal_max+"</p></div><div class=\"ressources-box\"><p id=\"gaz\">gaz : "+planete.gaz+"/"+planete.gaz_max+"</p><p id=\"energie\">energie :"+planete.energie+"</p></div></div></div></div></div>"
+            
                    
         elif line.strip()== "<div class=\"planet type0\" id=\"\" style=\"top:30%;left:30%;\" onclick=\"openbox()\"></div>":
             

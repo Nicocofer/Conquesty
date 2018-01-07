@@ -101,6 +101,20 @@ class Authentification(object):
             </html>"""
         
     inscriptionbase.exposed = True
+    def batiment(self,id_planete):
+        conn = sqlite3.connect('Base_conquesty.db3')
+        cursor = conn.cursor()
+        html=""
+        try:
+            cursor.execute("SELECT * FROM Batiment WHERE id='"+str(id_planete])+"'")
+            for row in cursor:
+                html=html + str(row[0])+"<br/>"
+            return html
+        except:
+            return "pas de batiment"
+        else:
+            return "pas de batiment
+    batiment.exposed = True
     
     
 def serveur():
