@@ -106,9 +106,10 @@ class Authentification(object):
         cursor = conn.cursor()
         html=""
         try:
-            cursor.execute("SELECT * FROM Batiment WHERE id_planete="+str(id_planete))
-            for row in cursor:
-                html=html + str(row[3])+"<br/>"
+            for idp in id_planete:
+                cursor.execute("SELECT * FROM Batiment WHERE id_planete='"+str(idp)+"'")
+                for row in cursor:
+                    html=html + str(row[0])+" id planete "+str(row[3])+"<br/>"
             return html
         except:
             return "pas de batiment"+str(id_planete)
