@@ -6,6 +6,8 @@ import os
 import time
 from utils.moteur_planete import population, max_pop, hangar_metal, metal, hangar_gaz, hangar_cristal, cristal, gaz, energie
 from index import index_conquesty
+from class_object.Batiment import Batiment
+from class_object.Planete import Planete
 import sqlite3
 import cherrypy
 
@@ -96,33 +98,71 @@ class Authentification(object):
         return """<html>
               <head><link rel="stylesheet" type="text/css" href="/dist/css/login.css"></head>
               <body>
-               <h1>Merci pour votre inscription. <a href="index">Se connecter</a></h1>
+               <p>Merci pour votre inscription. <a href="index">Se connecter</a></p>
               </body>
             </html>"""
         
     inscriptionbase.exposed = True
+    
+    @cherrypy.tools.sessions()
     def batiment(self,id_planete):
+        #affichage batiment
         conn = sqlite3.connect('Base_conquesty.db3')
         cursor = conn.cursor()
-        html=""
-        try:
-            for idp in id_planete:
-                cursor.execute("SELECT * FROM Batiment WHERE id_planete='"+str(idp)+"'")
-                for row in cursor:
-                    html=html + str(row[0])+" id planete "+str(row[3])+"<br/>"
-            return html
-        except:
-            return "pas de batiment"+str(id_planete)
-        else:
-            return "pas de batiment"+str(id_planete)
+        html="Batiment present sur la planete<br/><br/>"
+        #try:
+            
+        cursor.execute("SELECT * FROM Batiment WHERE id_planete="+str(id_planete))
+        for row in cursor:
+            html=html + " Type: "+str(row[1])+" niv : "+str(row[2])+"<br/>"
+            
+        #except:
+            #html= "Pas de batiment sur cette planete <br/>"
+        #else:
+            #html= "Pas de batiment sur cette planete <br/>"
+        html=html+"<br/><br/>Construction:<br/><br/>"
+        planete = Planete()
+        planete.affichage_planete(id_planete)
+        
+        conn = sqlite3.connect('Base_conquesty.db3')
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM CoutBatiment WHERE niveau='1'")
+        listebat=[]
+        
+        for bat in cursor:
+            batiment= Batiment()
+            batiment.type = bat[1]
+            batiment.niveau = 1
+            listebat.append(batiment)
+        for bati in listebat:
+            if bati.autoriser_construction(bati.type, planete.metal, planete.cristal, planete.gaz, 0, 0,cherrypy.session['id'],id_planete):
+                html=html +" type: "+ str(bati.type) +" niv:" + str(bati.niveau)+ " <a href=construire?id_planete="+str(id_planete)+"&typebati="+str(bati.type)+">Construire</a> <br/>"
+            else:
+                html=html +" type: "+ str(bati.type) +" niv:" + str(bati.niveau)+ " Pas assez de ressources <br/>"
+        return html
+        
     batiment.exposed = True
     
+    @cherrypy.tools.sessions()
+    def construire(self,id_planete,typebati):
+        batiment= Batiment()
+        batiment.type = typebati
+        batiment.niveau = 1
+
+        planete = Planete()
+        planete.affichage_planete(id_planete)
+        
+        html = batiment.creation_batiment(batiment.type, planete.metal, planete.cristal, planete.gaz, 0, 0,cherrypy.session['id'],id_planete)
+        return html
+        
+    construire.exposed = True
     
 def serveur():
     configfile=os.path.join(os.path.dirname(__file__),r"config.conf")
     application = cherrypy.tree.mount(Authentification(), '/')
     cherrypy.config.update({'server.socket_host': '0.0.0.0'} )  
     cherrypy.quickstart(application, config=configfile)
+    
     
 """    
 def serveur():
