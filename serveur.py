@@ -139,6 +139,11 @@ class Authentification(object):
                 html=html +" type: "+ str(bati.type) +" niv:" + str(bati.niveau)+ " <a href=construire?id_planete="+str(id_planete)+"&typebati="+str(bati.type)+">Construire</a> <br/>"
             else:
                 html=html +" type: "+ str(bati.type) +" niv:" + str(bati.niveau)+ " Pas assez de ressources <br/>"
+        html=html+"<br/><br/>Couts Batiments:<br/><br/>"        
+        cursor_coutbatiment = conn.cursor()
+        cursor_coutbatiment.execute("SELECT * FROM CoutBatiment")
+        for bat in cursor_coutbatiment:
+            html =html + "Type : " +str(bat[1])+ " Niveau : "+str(bat[2])+" Metal : " +str(bat[3])+" Crstal : "+str(bat[4])+" Gaz : " +str(bat[5])+"<br/>"
         return html
         
     batiment.exposed = True
