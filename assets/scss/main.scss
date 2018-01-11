@@ -97,37 +97,10 @@ header{
 	
 
 
-	nav{
-		width: 60%;
-		margin-right: 5%;
-
-	}
-
-	ul {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 100%;
-		margin: auto;
-		padding-top: 10px;
-		padding-left: 0px;
-		box-shadow: $bx;
-		margin-left: 15%;
-	}
+	
 
 	
 
-	li {
-		margin:20px;
-		margin-left: 0px;
-		width: 100%;
-		height: 20px;
-		list-style: none;
-		/*box-shadow: $bx;*/
-		text-align: center;
-
-
-	}
 
 	hr {
 		width: 100%;
@@ -230,10 +203,11 @@ header{
 
 	.Pdescription {
 		width: 400px;
-		height: 500px;
+		/*height: 500px;*/
 		background: $c2;
 		position: absolute;
 		display: flex;
+		left: 1%;
 		display: none; /*mettre en commentaire pour bosser sur la Pdescri en off*/
 		flex-direction: column;
 		opacity: 0.9;
@@ -368,5 +342,89 @@ header{
 		width: 70%;
 		text-align: center;
 		border-bottom: 2px solid #48817F;
+	}
+	
+
+	.onglets {
+		margin: auto;
+		height: 60px;
+		width: 100%;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		background:  #1C2422;
+		/*border-top:  2px solid#1C2420;*/
+		padding: 0;
+		height: 100%;
+	}
+
+	li {
+		text-align: center;
+		list-style: none;
+/*		background: green;*/
+		margin: 0;
+		margin-right: 20px;
+		width: 180px;
+		vertical-align: middle;
+		padding-top: 10px;
+		display: flex;
+	}
+
+	li:hover {
+		color:#48817F;
+	/*	box-shadow: 0 0 0 5px #fff; */
+		-webkit-transform: scale(0.925);
+        -moz-transform: scale(0.925);
+        -ms-transform: scale(0.925);
+        -o-transform: scale(0.925);
+        transform: scale(0.925);
+        transition: 0.8s;
+	}
+
+	li:active {
+		
+		transform: scale(1.2);
+		transition:0.1s;
+	}
+
+	li p {
+		margin: auto;
+		padding: auto;
+	}
+
+
+	.bodyC{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		margin-top: 20px;
+		display: none;
+		margin-bottom: 30px;
+	}
+
+	.bodyC-top {
+		height: 100%;
+	}
+	
+	.batibox{
+		background: #1C2422;
+		width: 160px;
+		height: 50px;
+		font-size: 12px;
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+
+	.terrain:hover {
+		-webkit-transform: scale(0.925);
+        -moz-transform: scale(0.925);
+        -ms-transform: scale(0.925);
+        -o-transform: scale(0.925);
+        transform: scale(0.925);
+        transition: 0.3s;
 	}
 }
