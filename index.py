@@ -76,18 +76,19 @@ def index_conquesty(systeme):
 				<div class="Rtitle">Construction Planétaire</div>
 				<div class="bodyP-top bodyC-top">
 					<div class="bodyP-left ">
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-					</div>
-					<div class="bodyP-right">
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
-						<div class="Pparam terrain"></div>
+
+					
+		""".format(planete.id,planete.nom,planete.type,planete.id_proprio,planete.attaque,planete.armure,planete.systeme,planete.galaxie,planete.x,planete.y,planete.pop,planete.pop_max,planete.metal,planete.metal_max,planete.cristal,planete.cristal_max,planete.gaz,planete.gaz_max,planete.energie)
+                cursor.execute("SELECT * FROM Batiment WHERE id_planete="+str(planete.id))
+                i=0
+                for row in cursor:
+                    if i == 5:
+                        html=html +"</div><div class=\"bodyP-right\">"
+                        html=html + "<div class=\"Pparam terrain\">"+str(row[1])+"</div>"
+                    else:
+                        html=html + "<div class=\"Pparam terrain\">"+str(row[1])+"</div>"
+                    i=i+1
+                html=html +"""          
 					</div>
 				</div>
 			</div>
@@ -100,8 +101,8 @@ def index_conquesty(systeme):
 					<li id='menuconstruire'><p>Construire</p></li>
 					<li id='menuchantierspatial'><p>Chantier Spatial</p></li>	
 				</ul>
-			</div>
-		""".format(planete.id,planete.nom,planete.type,planete.id_proprio,planete.attaque,planete.armure,planete.systeme,planete.galaxie,planete.x,planete.y,planete.pop,planete.pop_max,planete.metal,planete.metal_max,planete.cristal,planete.cristal_max,planete.gaz,planete.gaz_max,planete.energie)
+			</div>"""
+
             reprisehtml=False
             html =html + "</div>"
         elif line.strip()== "<div class=\"right\" >":
