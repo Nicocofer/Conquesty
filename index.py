@@ -26,17 +26,88 @@ def index_conquesty(systeme):
 
 
 
-        
+    reprisehtml=True
     file = open("index.html", "r")
     html=""
     for line in file:
-        if line.strip()=="<div class=\"boxP\" id=\"\"><div class=\"headP\"><div class=\"nameP\">Name planet</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div><div class=\"bodyP\"><div class=\"bodyP-top\"><div class=\"bodyP-left\"><div class=\"Pparam\">Type :</div><div class=\"Pparam\">Propriaitaire :</div><div class=\"Pparam\">Attaque :  <br> Defense :</div></div><div class=\"bodyP-right\"><div class=\"Pparam\">Systeme solaire : <br>Galaxie :</div><div class=\"Pparam\">Coordonnees<br> x :   / y :</div><div class=\"Pparam\">Population :</div></div></div><div class=\"bodyP-bottom\"><div class=\"Rtitle\">Ressouces de la planete</div><div class=\"ressources\"><div class=\"ressources-box\"><p id=\"metal\">metal :</p><p id=\"cristal\">cristal :</p></div><div class=\"ressources-box\"><p id=\"gaz\">gaz :</p><p id=\"energie\">energie :</p></div></div></div></div></div>":
+        if line.strip()=="<div class=\"boxP\" id=\"\">" and reprisehtml:
             for planete in liste_planete_systeme:
 
-                html= html +"<div class=\"boxP\" id=\"p"+planete.id+"\"><div class=\"headP\"><div class=\"nameP\">"+planete.nom+"</div><div class=\"close\" onclick=\"closebox()\"><span>X</span></div></div><div class=\"bodyP\"><div class=\"bodyP-top\"><div class=\"bodyP-left\"><div class=\"Pparam\">Type :"+planete.type+"</div><div class=\"Pparam\">Propriaitaire :"+planete.id_proprio+"</div><div class=\"Pparam\">Attaque : "+planete.attaque+" <br> Defense :"+planete.armure+"</div></div><div class=\"bodyP-right\"><div class=\"Pparam\">Syst&egrave;me solaire : "+planete.systeme+"<br>Galaxie :"+planete.galaxie+"</div><div class=\"Pparam\">Coordonn&eacute;es<br> x : "+planete.x+"  / y : "+planete.y+"</div><div class=\"Pparam\">Population :"+planete.pop+"/"+planete.pop_max+"</div></div></div><div class=\"bodyP-bottom\"><div class=\"Rtitle\">Ressouces de la plan&egrave;te</div><div class=\"ressources\"><div class=\"ressources-box\"><p id=\"metal\">m&eacute;tal : "+planete.metal+"/"+planete.metal_max+"</p><p id=\"cristal\">cristal : "+planete.cristal+"/"+planete.cristal_max+"</p></div><div class=\"ressources-box\"><p id=\"gaz\">gaz : "+planete.gaz+"/"+planete.gaz_max+"</p><p id=\"energie\">energie :"+planete.energie+"</p></div></div><a href=\"batiment?id_planete="+planete.id+"\"/>Construction</a></div></div></div>"
-            
-                   
-        elif line.strip()== "<div class=\"planet type0\" id=\"\" style=\"top:30%;left:30%;\" onclick=\"openbox()\"></div>":
+               
+                html = html + """
+
+			<div class="boxP" id="p{0}">
+				<div class="headP">
+					<div class="nameP">{1}</div>
+					<div class="close" onclick="closebox()"><span>X</span></div>
+				</div>
+				
+				<!-- Partie info planétaire -->
+				<div class="bodyP"><div class="bodyP-top">
+					<div class="bodyP-left">
+						<div class="Pparam">Type : {2}</div>
+						<div class="Pparam">Propriaitaire : {3}</div>
+						<div class="Pparam">Attaque : {4}<br> Defense : {5}</div>
+					</div>
+					<div class="bodyP-right">
+						<div class="Pparam">Systeme solaire : {6}<br>Galaxie : {7}</div>
+						<div class="Pparam">Coordonnees<br> x :  {8} / y : {9}</div>
+						<div class="Pparam">Population : {9}/{10}</div>
+					</div>
+				</div>
+				<div class="bodyP-bottom">
+					<div class="Rtitle">Ressouces de la planete</div>
+					<div class="ressources">
+						<div class="ressources-box">
+							<p id="metal">metal : {11}/{12}</p>
+							<p id="cristal">cristal : {13}/{14}</p>
+						</div>
+						<div class="ressources-box">
+							<p id="gaz">gaz : {15}/{16}</p>
+							<p id="energie">energie : {17}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Partie construction planétaire -->
+			<div class="bodyC">
+				<div class="Rtitle">Construction Planétaire</div>
+				<div class="bodyP-top bodyC-top">
+					<div class="bodyP-left ">
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+					</div>
+					<div class="bodyP-right">
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+						<div class="Pparam terrain"></div>
+					</div>
+				</div>
+			</div>
+			
+
+			<!--Partie Menu planétaire -->
+			<div class="onglets">
+				<ul>
+					<li id='menuinfos'><p>Infos</p></li>
+					<li id='menuconstruire'><p>Construire</p></li>
+					<li id='menuchantierspatial'><p>Chantier Spatial</p></li>	
+				</ul>
+			</div>
+		""".format(planete.id,planete.nom,planete.type,planete.id_proprio,planete.attaque,planete.armure,planete.systeme,planete.galaxie,planete.x,planete.y,planete.pop,planete.pop_max,planete.metal,planete.metal_max,planete.cristal,planete.cristal_max,planete.gaz,planete.gaz_max,planete.energie)
+            reprisehtml=False
+            html =html + "</div>"
+        elif line.strip()== "<div class=\"right\" >":
+            reprisehtml=True
+            html= html + line
+        elif line.strip()== "<div class=\"planet type0\" id=\"\" style=\"top:30%;left:30%;\" onclick=\"openbox()\"></div>" and reprisehtml:
             
             for planete in liste_planete_systeme:
                 x = planete.x
@@ -55,8 +126,10 @@ def index_conquesty(systeme):
                     y=(y+500)/100
                 html= html +"<div class=\"planet type"+str(type_planete)+"\" id=\""+ str(id_planete) +"\" style=\"top:"+str(y)+"%;left:"+str(x)+"%;\" onclick=\"openbox()\"></div>"
                     
-        else:
+        elif reprisehtml:
             html= html + line
+        else:
+            pass
         
 
     return html
