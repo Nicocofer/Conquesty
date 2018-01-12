@@ -209,7 +209,7 @@ header{
 		position: absolute;
 		display: flex;
 		left: 1%;
-		/*display: none;*/ /*mettre en commentaire pour bosser sur la Pdescri en off*/
+		display: none; /*mettre en commentaire pour bosser sur la Pdescri en off*/
 		flex-direction: column;
 		opacity: 0.9;
 		
@@ -438,11 +438,17 @@ header{
 	body{
 		background-size: 500%;
 	}
-		
+	
 	.wrapper .Pdescription{
 		width: 90%;
 		left: 5%;
 		top:80px;
+	}
+
+	.right {
+		width: 200%;
+
+      -webkit-overflow-scrolling: touch;
 	}
 
 }
