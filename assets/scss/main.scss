@@ -162,6 +162,7 @@ header{
 
 	.planet:hover {
 		box-shadow: 0 0 0 5px #fff; 
+
 		-webkit-transform: scale(0.925);
         -moz-transform: scale(0.925);
         -ms-transform: scale(0.925);
@@ -208,7 +209,7 @@ header{
 		position: absolute;
 		display: flex;
 		left: 1%;
-		display: none; /*mettre en commentaire pour bosser sur la Pdescri en off*/
+		/*display: none;*/ /*mettre en commentaire pour bosser sur la Pdescri en off*/
 		flex-direction: column;
 		opacity: 0.9;
 		
@@ -427,4 +428,21 @@ header{
         transform: scale(0.925);
         transition: 0.3s;
 	}
+}
+
+
+
+
+
+@media all and (max-device-width: 800px)  {
+	body{
+		background-size: 500%;
+	}
+		
+	.wrapper .Pdescription{
+		width: 90%;
+		left: 5%;
+		top:80px;
+	}
+
 }
