@@ -88,6 +88,15 @@ def index_conquesty(systeme):
                     else:
                         html=html + "<div class=\"Pparam terrain\">"+str(row[1])+"</div>"
                     i=i+1
+                if i<=5:
+                    html=html +"</div><div class=\"bodyP-right\">"
+                terrain_vierge= 10-i
+                for terrain in range(terrain_vierge):
+                    if terrain == 5:
+                        html=html +"</div><div class=\"bodyP-right\">"
+                        html=html + "<div class=\"Pparam terrain\"></div>"
+                    else:
+                        html=html + "<div class=\"Pparam terrain\"></div>"
                 html=html +"""          
 					</div>
 				</div>
