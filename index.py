@@ -42,7 +42,7 @@ def index_conquesty(systeme):
 					<div class="close" onclick="closebox()"><span>X</span></div>
 				</div>
 				
-				<!-- Partie info planétaire -->
+				<!-- Partie info plan&eacute;taire -->
 				<div class="bodyP"><div class="bodyP-top">
 					<div class="bodyP-left">
 						<div class="Pparam">Type : {2}</div>
@@ -71,9 +71,9 @@ def index_conquesty(systeme):
 			</div>
 
 
-			<!-- Partie construction planétaire -->
+			<!-- Partie construction plan&eacute;taire -->
 			<div class="bodyC">
-				<div class="Rtitle">Construction Planétaire</div>
+				<div class="Rtitle">Construction Plan&eacute;taire</div>
 				<div class="bodyP-top bodyC-top">
 					<div class="bodyP-left ">
 
@@ -103,7 +103,7 @@ def index_conquesty(systeme):
 			</div>
 			
 
-			<!--Partie Menu planétaire -->
+			<!--Partie Menu plan&eacute;taire -->
 			<div class="onglets">
 				<ul>
 					<li id='menuinfos'><p>Infos</p></li>
