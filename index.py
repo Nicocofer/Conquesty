@@ -52,19 +52,19 @@ def index_conquesty(systeme):
 					<div class="bodyP-right">
 						<div class="Pparam">Systeme solaire : {6}<br>Galaxie : {7}</div>
 						<div class="Pparam">Coordonnees<br> x :  {8} / y : {9}</div>
-						<div class="Pparam">Population : {9}/{10}</div>
+						<div class="Pparam">Population : {10}/{11}</div>
 					</div>
 				</div>
 				<div class="bodyP-bottom">
 					<div class="Rtitle">Ressouces de la planete</div>
 					<div class="ressources">
 						<div class="ressources-box">
-							<p id="metal">metal : {11}/{12}</p>
-							<p id="cristal">cristal : {13}/{14}</p>
+							<p id="metal">metal : {12}/{13}</p>
+							<p id="cristal">cristal : {14}/{15}</p>
 						</div>
 						<div class="ressources-box">
-							<p id="gaz">gaz : {15}/{16}</p>
-							<p id="energie">energie : {17}</p>
+							<p id="gaz">gaz : {16}/{17}</p>
+							<p id="energie">energie : {18}</p>
 						</div>
 					</div>
 				</div>
