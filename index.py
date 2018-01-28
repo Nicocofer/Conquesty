@@ -110,7 +110,7 @@ def index_conquesty(systeme):
 					<li id='menuconstruire'><p>Construire</p></li>
 					<li id='menuchantierspatial'><p>Chantier Spatial</p></li>	
 				</ul>
-			</div>"""
+			</div></div>"""
 
             reprisehtml=False
             html =html + "</div>"
